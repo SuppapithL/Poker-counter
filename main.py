@@ -4,7 +4,7 @@ class player:
         self.point = point
         self.name = name
 class game:
-    def _init_(self, Ante
+    def _init_(self, Ante,
 Playercount = int(input("Please input number of players"))
 Players =  ["x"] * Playercount
 start points = int(input("Please enter start money:"))

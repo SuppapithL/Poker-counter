@@ -1,2 +1,2 @@
 # Poker-counter
-Teaching stupid python 4 ma monke brain in free time
+Teaching stupid python 4 ma monke brain in free time (Mostly because IDK Poker Rule)
