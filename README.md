@@ -1,0 +1,2 @@
+# Poker-counter
+Teaching stupid python 4 ma monke brain in free time
