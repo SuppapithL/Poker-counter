@@ -6,6 +6,9 @@ class player:
         self.point = point
         self.name = name
 
+    def playerinfo(self):
+        return f"Num: {self.num},Name: {self.name},Point: {self.point}"
+
 def clearconsole():
     os = sys.platform
     if os == 'linux' or 'darwin':
@@ -14,27 +17,37 @@ def clearconsole():
         command = 'cls'
     subprocess.run(command, shell = True)
 
-class game:
-    def _init_(self, Ante = 0, ):
-        self.Ante = Ante
-        self.mainpot = Ante
-
-def Table():
-    print ("This is Game")
+def Lobby(Players):
+    clearconsole()
+    print ("This is Lobby!\nPlayers information:")
+    checkstatus(Players)
+    staged = input("Please enter number of the player that will join(x,y,...):").split(",")
+    clearconsole()
+    print("This is Joined player:")
+    for Nums in staged:
+        if int(Nums) in Players:
+            print(Players[int(Nums)].playerinfo())
 
 def checkstatus(Players):
-    for identity in Players:
-        print("Player",identity.name,"Num.",identity.num,"point: ",identity.point)
+    for identity in Players.values():
+        print("Player", identity.name, "Num.", identity.num,"point: ", identity.point)
 
-Playercount = int(input("Please input number of players: "))
-Players =  ["x"] * Playercount
-startpoints = int(input("Please enter start money: "))
+def Setup():
+    Playercount = int(input("Please input number of players: "))
+    Players =  {}
+    startpoints = int(input("Please enter start money: "))
 
-for Playernum in range(Playercount):
-    print(f"Please put Name of player{Playernum}: ")
-    name = input()
-    Players[Playernum] = player(name, Playernum, startpoints)
+    for Playernum in range(Playercount):
+        print(f"Please put Name of player{Playernum}: ")
+        name = input()
+        Players[Playernum] = player(name, Playernum, startpoints)
+    clearconsole()
+    checkstatus(Players)
+    input("Enter to continue if information is correct.If not, control c to cancle")
+    return Players
 
-input("Enter to continue")
-clearconsole()
-checkstatus(Players)
+def main():
+    Players = Setup()
+    Lobby(Players)
+
+main()
