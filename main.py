@@ -9,6 +9,14 @@ class player:
     def playerinfo(self):
         return f"Num: {self.num},Name: {self.name},Point: {self.point}"
 
+class Table:
+    def __init__(self, players):
+        self.players = players
+        self.pot = 0
+        self.community_cards = []
+        self.deck = []
+        self.turn_index = 0
+
 def clearconsole():
     os = sys.platform
     if os == 'linux' or 'darwin':
