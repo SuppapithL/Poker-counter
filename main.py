@@ -30,8 +30,12 @@ def Lobby(Players):
     print ("This is Lobby!\nPlayers information:")
     checkstatus(Players)
     staged = input("Please enter number of the player that will join(x,y,...):").split(",")
+    Joined = []
+    for Nums in staged:
+        if int(Nums) in Players:
+            Joined.append(Players[int(Nums)])
     clearconsole()
-    Tables(staged,Players)
+    Tables(Joined)
 
 def checkstatus(Players):
     for identity in Players.values():
@@ -51,12 +55,12 @@ def Setup():
     input("Enter to continue if information is correct.If not, control c to cancle")
     return Players
 
-def Tables(staged,Players):
+def Tables(Joined):
     clearconsole()
+    Tabl = Table(Joined)
     print("This is Table, Joined player:")
-    for Nums in staged:
-        if int(Nums) in Players:
-            print(Players[int(Nums)].playerinfo())
+    for PPL in Joined:
+        print(PPL.playerinfo())
 
 def main():
     Players = Setup()
