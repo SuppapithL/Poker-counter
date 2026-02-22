@@ -1,5 +1,4 @@
-# Poker-counter
-Teaching stupid python 4 ma monke brain in free time (Mostly because IDK Poker Rule)
-
-
-PS>>> WTF IS POKER EVEN ABOUT?
+# Poker-counter\
+Just created to work as point/currency counter for Texas Hold'em. This Project want to acconplish
+  - Point counter
+  - feature to let player decide to play this round or not
