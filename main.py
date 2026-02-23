@@ -42,7 +42,7 @@ def Lobby(Players):
     staged = input("Please enter number of the player that will join(x,y,...):").split(",")
     Joined = []
     for Nums in staged:
-        if int(Nums) < len(staged):
+        if int(Nums) < len(staged) + 1:
             Joined.append(Players[int(Nums)])
     clearconsole()
     Tables(Joined)
@@ -68,7 +68,7 @@ def Tables(Joined):
     clearconsole()
     Tabl = Table(Joined)
     print("This is Table, Joined player:")
-    for element in Tabl,tableinfo():
+    for element in Tabl.tableinfo():
         print(element)
 
 def main():
