@@ -53,8 +53,7 @@ def Setup():
     Playerlist = []
     startpoints = int(input("Please enter start money: "))
     for Playernum in range(Playercount):
-        print(f"Please put Name of player{Playernum}: ")
-        name = input()
+        name = input(f"Please put Name of player{Playernum}: ")
         Players[Playernum] = player(name, Playernum, startpoints)
     clearconsole()
     for identity in Players.values():
