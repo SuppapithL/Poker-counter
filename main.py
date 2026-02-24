@@ -26,6 +26,36 @@ class Table:
             package.append(f"Num: {player.num},Name: {player.name},Point: {player.point},Dealer: {player == self.dealer}")
         return package
 
+def get_int(prompt, min_val=None, max_val=None):
+    while True:
+        raw = input(prompt)
+
+        try:
+            value = int(raw)
+        except ValueError:
+            print("Invalid integer.")
+            continue
+
+        if min_val is not None and value < min_val:
+            print("Too small.")
+            continue
+
+        if max_val is not None and value > max_val:
+            print("Too large.")
+            continue
+
+        return value
+
+def dblcheck(prompt, checkpromt, min_val = None, max_val = None):
+    while True:
+        raw = get_int(prompt, min_val, max_val)
+        clearconsole()
+        Decetion = input(checkpromt+str(raw)+":").lower()
+        if Decetion != "r":
+            return raw
+        else:
+            clearconsole()
+
 def clearconsole():
     os = sys.platform
     if os in ('linux', 'darwin'):
@@ -48,7 +78,8 @@ def Lobby(Players):
     Tables(Joined)
 
 def Setup():
-    Playercount = int(input("Please input number of players: "))
+    Playercount = dblcheck("Please input number of players: ", "Enter ""r"" or ""R"" if you want to change the number\n if not, enter any thing\n The number = ",0, 10)
+    clearconsole()
     Players =  {}
     Playerlist = []
     startpoints = int(input("Please enter start money: "))
