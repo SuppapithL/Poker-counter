@@ -46,16 +46,6 @@ def get_int(prompt, min_val=None, max_val=None):
 
         return value
 
-def dblcheck(prompt, checkpromt, min_val = None, max_val = None):
-    while True:
-        raw = get_int(prompt, min_val, max_val)
-        clearconsole()
-        Decetion = input(checkpromt+str(raw)+":").lower()
-        if Decetion != "r":
-            return raw
-        else:
-            clearconsole()
-
 def clearconsole():
     os = sys.platform
     if os in ('linux', 'darwin'):
@@ -78,7 +68,13 @@ def Lobby(Players):
     Tables(Joined)
 
 def Setup():
-    Playercount = dblcheck("Please input number of players: ", "Enter ""r"" or ""R"" if you want to change the number\n if not, enter any thing\n The number = ",0, 10)
+    while True:
+        clearconsole()
+        Playercount = get_int("Please input number of players:",0, 10)
+        clearconsole()
+        confirmation = input(f"There will be {Playercount} players in this game.\nEnter r or R to reset, any key to confirm:").lower()
+        if confirmation != "r":
+            break
     clearconsole()
     Players =  {}
     Playerlist = []
