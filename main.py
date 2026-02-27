@@ -1,7 +1,7 @@
 import sys, subprocess
 import random
 
-class player:
+class playerinit:
     def __init__(self, name,  number, point):
         self.num = number
         self.point = point
@@ -68,27 +68,45 @@ def Lobby(Players):
     Tables(Joined)
 
 def Setup():
+    rawplayers = []
+    players = []
     while True:
         clearconsole()
-        Playercount = get_int("Please input number of players:",0, 10)
-        clearconsole()
-        confirmation = input(f"There will be {Playercount} players in this game.\nEnter r or R to reset, any key to confirm:").lower()
-        if confirmation != "r":
-            break
-    clearconsole()
-    Players =  {}
-    Playerlist = []
-    startpoints = int(input("Please enter start money: "))
-    for Playernum in range(Playercount):
-        name = input(f"Please put Name of player{Playernum}: ")
-        Players[Playernum] = player(name, Playernum, startpoints)
-    clearconsole()
-    for identity in Players.values():
-        Playerlist.append(identity)
-    for identity in Playerlist:
-        print(identity.playerinfo())
-    input("Enter to continue if information is correct.If not, control c to cancle")
-    return Playerlist
+        print(f'This is Player setup!\nCurrent players:')
+        for identity in players:
+            print(identity.playerinfo())
+        print()
+        command = input("a: add player\nr: remove player\nu: update player's information\nc: continue\nq: quit\nPlease enter your command:".lower())
+        match command:
+            case "a":
+                players = addplayer(players)
+            case "r":
+                players = removeplayer(players)
+            case "u":
+                pass
+            case "c":
+                break
+            case "q":
+                exit()
+            case _:
+                input("Invalid command please try again") 
+    return players
+
+def addplayer(players):
+    clearconsole() 
+    print("This is add player!") 
+    Name = input("Please enter player name:")
+    Point = int(input("Please enter player starting point:"))
+    allindex = []
+    for number in players:
+        allindex.append(number.num)
+    index = max([0]+allindex) + 1
+    Player = playerinit(Name, index, Point)
+    players.append(Player)
+    return players
+
+def removeplayer(players):
+    return
 
 def Tables(Joined):
     clearconsole()
