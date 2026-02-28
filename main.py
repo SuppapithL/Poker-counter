@@ -32,6 +32,7 @@ def get_int(prompt, min_val=None, max_val=None):
 
         try:
             value = int(raw)
+            
         except ValueError:
             print("Invalid integer.")
             continue
