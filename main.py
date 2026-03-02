@@ -99,15 +99,31 @@ def addplayer(players):
     Name = input("Please enter player name:")
     Point = int(input("Please enter player starting point:"))
     allindex = []
-    for number in players:
-        allindex.append(number.num)
+    for identity in players:
+        allindex.append(identity.num)
     index = max([0]+allindex) + 1
     Player = playerinit(Name, index, Point)
     players.append(Player)
     return players
 
 def removeplayer(players):
-    return
+    while True:
+        clearconsole()
+        print("select players you want to remove!:")
+        for identity in players:
+            print(identity.playerinfo())
+        command = int(input("enter player number who want to me removed or ""0"" to return:"))
+        if command == 0:
+            return players
+        for number in players:
+            if number.num == command:
+                confirm = input(f"Do you want to remove player {number.name}? Y/N").lower()
+                if confirm == "y":
+                    players.remove(number)
+                    return players
+                elif confirm == "n":
+                    return removeplayers(players)
+        input("Invalid number, please try again")
 
 def Tables(Joined):
     clearconsole()
