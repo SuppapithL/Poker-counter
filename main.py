@@ -125,6 +125,13 @@ def removeplayer(players):
                     return removeplayers(players)
         input("Invalid number, please try again")
 
+def updateinfo(players):
+    numbers = []
+    for identity in players:
+        numbers.append(identity.num)
+    while True:
+        command = input("please enter number of player to update")
+
 def Tables(Joined):
     clearconsole()
     Tabl = Table(Joined)
