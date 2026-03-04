@@ -10,8 +10,11 @@ class playerinit:
     def playerinfo(self):
         return f"Num: {self.num},Name: {self.name},Point: {self.point}"
 
-    def updateinfo(self, newpoint):
+    def updatepoint(self, newpoint):
         self.point = newpoint
+    
+    def updatename(self, newname):
+        self.name = newname
 
 class Table:
     def __init__(self, players):
@@ -28,23 +31,19 @@ class Table:
 
 def get_int(prompt, min_val=None, max_val=None):
     while True:
+        clearconsole()
         raw = input(prompt)
-
         try:
             value = int(raw)
-            
         except ValueError:
             print("Invalid integer.")
             continue
-
         if min_val is not None and value < min_val:
             print("Too small.")
             continue
-
         if max_val is not None and value > max_val:
             print("Too large.")
             continue
-
         return value
 
 def clearconsole():
@@ -84,7 +83,7 @@ def Setup():
             case "r":
                 players = removeplayer(players)
             case "u":
-                pass
+                players = updateinfo(players)
             case "c":
                 break
             case "q":
@@ -97,7 +96,7 @@ def addplayer(players):
     clearconsole() 
     print("This is add player!") 
     Name = input("Please enter player name:")
-    Point = int(input("Please enter player starting point:"))
+    Point = get_int("Please enter player starting point:")
     allindex = []
     for identity in players:
         allindex.append(identity.num)
@@ -130,7 +129,32 @@ def updateinfo(players):
     for identity in players:
         numbers.append(identity.num)
     while True:
-        command = input("please enter number of player to update")
+        clearconsole()
+        for gamer in players:
+            print(gamer.playerinfo())
+        command = input("please enter number of player to update:")
+        if command in numbers:
+            while True:
+                clearconsol()
+                for player in players:
+                    if player.num == command:
+                        realplayer = player
+                print("This is Player information:")
+                print(player.playerinfo())
+                print("p for point update, n for name update, q to quit")
+                choice = input("Please choose that wanted to change:").lower()
+                if choice == "p":
+                    newpoint = int(input("Please enter new point:"))
+                    player.updatepoint(newpoint)
+                elif choice == "n":
+                    newname = int(input("Please enter new name:"))
+                    player.updatepoint(newname)
+                elif choice == "q":
+                    break
+                else:
+                    input("invalid input. Please try again")
+        else:
+            input("invalid input. Please try again")
 
 def Tables(Joined):
     clearconsole()
