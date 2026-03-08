@@ -132,23 +132,26 @@ def updateinfo(players):
         clearconsole()
         for gamer in players:
             print(gamer.playerinfo())
-        command = input("please enter number of player to update:")
-        if command in numbers:
+        command = input("please enter number of player to update or q to quit:")
+        if command = "q":
+            return players
+        elif command in numbers:
             while True:
                 clearconsol()
                 for player in players:
                     if player.num == command:
                         realplayer = player
+                        players.remove(player)
                 print("This is Player information:")
-                print(player.playerinfo())
+                print(realplayer.playerinfo())
                 print("p for point update, n for name update, q to quit")
                 choice = input("Please choose that wanted to change:").lower()
                 if choice == "p":
                     newpoint = int(input("Please enter new point:"))
-                    player.updatepoint(newpoint)
+                    realplayer.updatepoint(newpoint)
                 elif choice == "n":
                     newname = int(input("Please enter new name:"))
-                    player.updatepoint(newname)
+                    realplayer.updatepoint(newname)
                 elif choice == "q":
                     break
                 else:
